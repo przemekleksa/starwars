@@ -8,19 +8,22 @@ import { getPlanets } from './store/planets/actions';
 import { selectPlanets } from './store/planets/selectors';
 import { selectFilms } from './store/films/selectors';
 import { getFilms } from './store/films/actions';
+import List from './components/List/List';
+import Planets from './screens/Planets';
 
 function App() {
   const dispatch = useDispatch();
   const people = useSelector(selectPeople);
   const planets = useSelector(selectPlanets);
   const films = useSelector(selectFilms)
+// selectro wypluwa state'a i daje mi dostep do tego kawalka ktory jest w selector.tsx
+
+// const dupa = useSelector((state) => {selectPeople(selectPeople)})
 
   useEffect(() => {
     dispatch(getPeople())
   }, []);
-  useEffect(() => {
-    dispatch(getPlanets())
-  }, []);
+
   useEffect(() => {
     dispatch(getFilms())
   },[])
@@ -29,9 +32,13 @@ function App() {
   }, [people, planets, films])
 
 
+  const onClickButton = (event: any) => {
+    console.log(event);
+  }
+
   return (
     <div className="App">
-  
+        <Planets />
     </div>
   );
 }
