@@ -1,5 +1,4 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { getPlanetsRequest } from "../../api/planets"
 import { getPlanets } from "./actions"
 
 const initState = {

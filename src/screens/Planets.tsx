@@ -12,7 +12,7 @@ const Planets = () => {
 
     useEffect(() => {
         dispatch(getPlanets())
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>

@@ -1,44 +1,47 @@
 import React, { useEffect } from 'react';
-// import logo from './logo.svg';
 import './App.css';
-import { useDispatch,useSelector } from 'react-redux';
-import { getPeople } from './store/people/actions';
+import { useSelector } from 'react-redux';
 import {selectPeople} from './store/people/selectors'
-import { getPlanets } from './store/planets/actions';
 import { selectPlanets } from './store/planets/selectors';
 import { selectFilms } from './store/films/selectors';
-import { getFilms } from './store/films/actions';
-import List from './components/List/List';
 import Planets from './screens/Planets';
+import People from './screens/People';
+import Films from './screens/Films';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
+import Http404 from './screens/Http404';
+import Home from './screens/Home';
+import Details from './components/Details';
+
 
 function App() {
-  const dispatch = useDispatch();
   const people = useSelector(selectPeople);
   const planets = useSelector(selectPlanets);
   const films = useSelector(selectFilms)
-// selectro wypluwa state'a i daje mi dostep do tego kawalka ktory jest w selector.tsx
 
-// const dupa = useSelector((state) => {selectPeople(selectPeople)})
-
-  useEffect(() => {
-    dispatch(getPeople())
-  }, []);
-
-  useEffect(() => {
-    dispatch(getFilms())
-  },[])
   useEffect(() => {
     console.log(people, planets, films)
   }, [people, planets, films])
 
 
-  const onClickButton = (event: any) => {
-    console.log(event);
-  }
-
   return (
     <div className="App">
-        <Planets />
+      <BrowserRouter>
+          <nav>
+            <h1>StarWars</h1>
+            <NavLink to='/'>Home</NavLink>
+            <NavLink to='/people'>People</NavLink>
+            <NavLink to='/planets'>Planets</NavLink>
+            <NavLink to='/films'>Films</NavLink>
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path='/*' element={<Http404 />} />
+            <Route path="/people" element={<People />} />
+            <Route path="/planets" element={<Planets />} />
+            <Route path="/films" element={<Films />} />
+            <Route path="/details/:id" element={<Details/>} />
+          </Routes>
+      </BrowserRouter>
     </div>
   );
 }
