@@ -7,20 +7,23 @@ import { selectFilms } from './store/films/selectors';
 import Planets from './screens/Planets';
 import People from './screens/People';
 import Films from './screens/Films';
+import Vehicles from './screens/Vehicles';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import Http404 from './screens/Http404';
 import Home from './screens/Home';
 import Details from './components/Details';
+import { selectVehicles } from './store/vehicles/selectors';
 
 
 function App() {
   const people = useSelector(selectPeople);
   const planets = useSelector(selectPlanets);
   const films = useSelector(selectFilms)
+  const vehicles = useSelector(selectVehicles)
 
   useEffect(() => {
-    console.log(people, planets, films)
-  }, [people, planets, films])
+    console.log(people, planets, films, vehicles)
+  }, [people, planets, films, vehicles])
 
 
   return (
@@ -32,6 +35,7 @@ function App() {
             <NavLink to='/people'>People</NavLink>
             <NavLink to='/planets'>Planets</NavLink>
             <NavLink to='/films'>Films</NavLink>
+            <NavLink to='/vehicles'>Vehicles</NavLink>
           </nav>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -39,6 +43,7 @@ function App() {
             <Route path="/people" element={<People />} />
             <Route path="/planets" element={<Planets />} />
             <Route path="/films" element={<Films />} />
+            <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/details/:id" element={<Details/>} />
           </Routes>
       </BrowserRouter>
