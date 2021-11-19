@@ -3,13 +3,15 @@ import { peopleReducer } from "./people/reducer"
 import thunkMiddleware from 'redux-thunk'
 import { planetReducer } from "./planets/reducer";
 import { filmsReducer } from "./films/reducer";
+import { vehiclesReducer } from "./vehicles/reducer";
 
 
 
 const rootReducer = combineReducers({
     people: peopleReducer,
     planets: planetReducer,
-    films: filmsReducer
+    films: filmsReducer,
+    vehicles: vehiclesReducer
 })
 
 function initStore() {
