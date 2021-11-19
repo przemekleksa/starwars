@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getPeople } from "./actions";
+import { getPeople, getPersonDetails } from "./actions";
 const initState = {
     people:[],
     isLoading: false,
@@ -21,5 +21,9 @@ export const peopleReducer = createReducer(initState, builder => {
         .addCase(getPeople.rejected, (state) => {
             state.isLoading = false;
             state.errorInfo = 'Przykro mi'
+        })
+        .addCase(getPersonDetails.fulfilled, (state, { payload }) => {
+            state.isLoading = false;
+            state.detailedPerson = payload
         })
 })

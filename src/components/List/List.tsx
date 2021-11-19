@@ -8,15 +8,13 @@ const List = ({elements} : {elements: any[]}) => {
         <div>
             
             {elements.map(el => {
+                const id = el.url.split("/").filter(String).slice(-1)[0]
                 return (
-                    <div>
-                    <NavLink to={`/details/${el.name}`} className="sw-el-link">
+                    <NavLink to={`/details/${id}`} className="sw-el-link" key={id} >
                         <div 
-                            key={el.name || el.title} 
                             className="sw-el"
                             >{el.name || el.title}</div>
                     </NavLink>
-                    </div>
                 )
             })}
             

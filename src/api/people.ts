@@ -4,6 +4,6 @@ export const getPeopleRequest = (): any => {
     return Fetch.get('people')
 }
 
-export const getPersonDetails = (id:string): any => {
+export const getPersonDetailsRequest = (id:string): any => {
     return Fetch.get('people/'+id)
 }

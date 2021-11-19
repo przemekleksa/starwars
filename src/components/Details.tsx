@@ -1,10 +1,11 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
-const Details = (el :any) => {
-console.log(el)
+const Details = () => {
+    const { id } = useParams()
     return (
         <div>
-            Details1
+            Details
         </div>
     )
 }
