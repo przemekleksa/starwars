@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import './List.css'
 
 const List = ({elements} : {elements: any[]}) => {
@@ -10,7 +10,7 @@ const List = ({elements} : {elements: any[]}) => {
             {elements.map(el => {
                 const id = el.url.split("/").filter(String).slice(-1)[0]
                 return (
-                    <NavLink to={`/details/${id}`} className="sw-el-link" key={id} >
+                    <NavLink to={`details/${id}`} className="sw-el-link" key={id}>
                         <div 
                             className="sw-el"
                             >{el.name || el.title}</div>

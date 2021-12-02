@@ -20,10 +20,17 @@ export const peopleReducer = createReducer(initState, builder => {
         })
         .addCase(getPeople.rejected, (state) => {
             state.isLoading = false;
-            state.errorInfo = 'Przykro mi'
+            state.errorInfo = 'unable to fetch data'
+        })
+        .addCase(getPersonDetails.pending, state => {
+            state.isLoading = true
         })
         .addCase(getPersonDetails.fulfilled, (state, { payload }) => {
             state.isLoading = false;
             state.detailedPerson = payload
+        })
+        .addCase(getPersonDetails.rejected, (state) => {
+            state.isLoading = false;
+            state.errorInfo = 'unable to fetch data'
         })
 })

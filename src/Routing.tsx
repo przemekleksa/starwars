@@ -6,7 +6,7 @@ import Films from './screens/Films';
 import Vehicles from './screens/Vehicles';
 import Http404 from './screens/Http404';
 import Home from './screens/Home';
-import Details from './components/Details';
+import Details from './components/Details/Details';
 
 export const Routing = () => {
     return (
@@ -18,7 +18,7 @@ export const Routing = () => {
             <Route path="/planets" element={<Planets />} />
             <Route path="/films" element={<Films />} />
             <Route path="/vehicles" element={<Vehicles />} />
-            <Route path="/details/:id" element={<Details/>} />
+            <Route path="/:category/details/:id" element={<Details/>} />
           </Routes>
     )
 }

@@ -13,7 +13,7 @@ const People = () => {
     }, [dispatch])
     return (
         <div>
-            <List elements={people} />
+            <List elements={people}/>
         </div>
     )
 }
