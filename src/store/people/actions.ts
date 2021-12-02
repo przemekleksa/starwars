@@ -5,6 +5,6 @@ export const getPeople = createAsyncThunk('people/getPeople', () => {
     return getPeopleRequest()
 })
 
-export const getPersonDetails = createAsyncThunk('people/getPersonDetails', ({id}: {id: string}) => {
+export const getPersonDetails = createAsyncThunk('people/getPersonDetails', (id: string) => {
     return getPersonDetailsRequest(id)
 })

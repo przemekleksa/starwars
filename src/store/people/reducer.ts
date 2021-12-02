@@ -25,9 +25,9 @@ export const peopleReducer = createReducer(initState, builder => {
         .addCase(getPersonDetails.pending, state => {
             state.isLoading = true
         })
-        .addCase(getPersonDetails.fulfilled, (state, { payload }) => {
+        .addCase(getPersonDetails.fulfilled, (state, { payload: { data } }) => {
             state.isLoading = false;
-            state.detailedPerson = payload
+            state.detailedPerson = data
         })
         .addCase(getPersonDetails.rejected, (state) => {
             state.isLoading = false;
