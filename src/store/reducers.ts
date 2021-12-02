@@ -1,6 +1,5 @@
-import { getDefaultMiddleware, combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { peopleReducer } from "./people/reducer"
-import thunkMiddleware from 'redux-thunk'
 import { planetReducer } from "./planets/reducer";
 import { filmsReducer } from "./films/reducer";
 import { vehiclesReducer } from "./vehicles/reducer";

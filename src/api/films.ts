@@ -4,6 +4,6 @@ export const getFilmsRequest = (): any => {
     return Fetch.get('films')
 }
 
-export const getFilmDetails = (id:string): any => {
+export const getFilmDetailsRequest = (id:string): any => {
     return Fetch.get('films/' + id)
 }

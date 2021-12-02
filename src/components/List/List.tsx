@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './List.css'
 
 const List = ({elements} : {elements: any[]}) => {
-    
+    console.log(elements)
     return(
         <div>
             

@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 import { getPersonDetails } from '../../store/people/actions'
 import { selectPerson } from '../../store/people/selectors'
 
-const Details = () => {
+
+const PersonDetails = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const person = useSelector(selectPerson)
@@ -32,4 +33,4 @@ const Details = () => {
     )
 }
 
-export default Details
+export default PersonDetails
