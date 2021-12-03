@@ -1,9 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { getVehicles } from "./actions"
+import { getVehicleDetails, getVehicles } from "./actions"
 
 const initState = {
     vehicles: [],
-    isLoading: false
+    isLoading: false,
+    vehicleDetails: {},
+    errorInfo: ''
 }
 
 export const vehiclesReducer = createReducer(initState, builder => {
@@ -14,5 +16,20 @@ export const vehiclesReducer = createReducer(initState, builder => {
         .addCase(getVehicles.fulfilled, (state, { payload } ) => {
             state.isLoading = false
             state.vehicles = payload.data.results
+        })
+        .addCase(getVehicles.rejected, state => {
+            state.isLoading = false;
+            state.errorInfo = 'unable to fetch data'
+        })
+        .addCase(getVehicleDetails.pending, state => {
+            state.isLoading = true
+        })
+        .addCase(getVehicleDetails.fulfilled, (state, { payload: { data } } ) => {
+            state.isLoading = false
+            state.vehicleDetails = data
+        })
+        .addCase(getVehicleDetails.rejected, state => {
+            state.isLoading = false
+            state.errorInfo = 'unable to fetch data'
         })
 })

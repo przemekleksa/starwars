@@ -1,9 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { getPlanets } from "./actions"
+import { getPlanetDetails, getPlanets } from "./actions"
 
 const initState = {
     planets: [],
-    isLoading: false
+    isLoading: false,
+    planetDetails: {},
+    errorInfo: ''
 }
 
 export const planetReducer = createReducer(initState, builder => {
@@ -15,7 +17,19 @@ export const planetReducer = createReducer(initState, builder => {
             state.isLoading = false;
             state.planets = payload.data.results
         })
-        .addCase(getPlanets.rejected, (state) =>{
+        .addCase(getPlanets.rejected, state =>{
             state.isLoading = false;
+            state.errorInfo = 'unable to fetch data'
+        })
+        .addCase(getPlanetDetails.pending, state => {
+            state.isLoading = true;
+        })
+        .addCase(getPlanetDetails.fulfilled, (state, {payload: {data}}) => {
+            state.isLoading = false;
+            state.planetDetails = data
+        })
+        .addCase(getPlanetDetails.rejected, state => {
+            state.isLoading = false;
+            state.errorInfo = 'unable to fetch data'
         })
 })

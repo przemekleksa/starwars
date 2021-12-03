@@ -8,7 +8,6 @@ const initState = {
     errorInfo: ''
 }
 
-
 export const peopleReducer = createReducer(initState, builder => {
     builder
         .addCase(getPeople.pending, state => {
