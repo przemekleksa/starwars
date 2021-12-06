@@ -11,5 +11,5 @@ const defaultOptions = {
     paramsSerializer: (params: unknown) => qs.stringify(params, { arrayFormat: 'repeat' }),
   };
   
-  const Fetch = axios.create(defaultOptions);
-  export default Fetch;
+  const Axios = axios.create(defaultOptions);
+  export default Axios;

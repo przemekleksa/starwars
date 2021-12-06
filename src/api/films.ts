@@ -1,9 +1,9 @@
-import Fetch from "../utils/fetch"
+import Axios from "../utils/axios"
 
 export const getFilmsRequest = (): any => {
-    return Fetch.get('films')
+    return Axios.get('films')
 }
 
 export const getFilmDetailsRequest = (id: string): any => {
-    return Fetch.get('films/' + id)
+    return Axios.get('films/' + id)
 }

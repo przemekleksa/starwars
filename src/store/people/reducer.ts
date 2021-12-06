@@ -1,35 +1,42 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getPeople, getPersonDetails } from "./actions";
+import { getPeople, getPersonDetails, resetPeople } from "./actions";
+
 const initState = {
     people:[],
     isLoading: false,
     page: 1,
     detailedPerson: {},
-    errorInfo: ''
+    errorInfo: '',
+    reset: false,
+    status: 'IDLE'
 }
 
 export const peopleReducer = createReducer(initState, builder => {
     builder
-        .addCase(getPeople.pending, state => {
-            state.isLoading = true;
-        })
         .addCase(getPeople.fulfilled, (state, { payload } ) => {
-            state.isLoading = false;
             state.people = payload.data.results
         })
-        .addCase(getPeople.rejected, (state) => {
-            state.isLoading = false;
-            state.errorInfo = 'unable to fetch data'
-        })
-        .addCase(getPersonDetails.pending, state => {
-            state.isLoading = true
-        })
         .addCase(getPersonDetails.fulfilled, (state, { payload: { data } }) => {
-            state.isLoading = false;
             state.detailedPerson = data
         })
-        .addCase(getPersonDetails.rejected, (state) => {
-            state.isLoading = false;
-            state.errorInfo = 'unable to fetch data'
+        .addCase(resetPeople, state => {
+            state.people = initState.people;
+            state.reset = true
         })
+        .addMatcher((action) => action.type.endsWith('/pending'), state => {
+            state.isLoading = true
+            state.status = 'PENDING'
+        } )
+        .addMatcher((action) => action.type.endsWith('/rejected'), state => {
+            state.isLoading = true
+            state.errorInfo = 'unable to fetch data'
+            state.status = 'REJECTED'
+        } )
+        .addMatcher((action) => action.type.endsWith('/fulfilled'), state => {
+            state.isLoading = false
+            state.status = 'FULFILLED'
+        } )
+        .addDefaultCase(((state) => {
+            state.status = 'IDLE'
+        }))
 })

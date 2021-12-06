@@ -1,9 +1,9 @@
-import Fetch from "../utils/fetch"
+import Axios from "../utils/axios"
 
 export const getVehiclesRequest = (): any => {
-    return Fetch.get('vehicles')
+    return Axios.get('vehicles')
 }
 
 export const getVehicleDetailsRequest = (id: string): any => {
-    return Fetch.get(`vehicles/${id}`)
+    return Axios.get(`vehicles/${id}`)
 }

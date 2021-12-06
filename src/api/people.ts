@@ -1,9 +1,9 @@
-import Fetch from "../utils/fetch"
+import Axios from "../utils/axios"
 
 export const getPeopleRequest = (): any => {
-    return Fetch.get('people')
+    return Axios.get('people')
 }
 
 export const getPersonDetailsRequest = (id:string): any => {
-    return Fetch.get('people/'+id)
+    return Axios.get('people/'+id)
 }
