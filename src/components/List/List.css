@@ -3,11 +3,11 @@
 }
 
 .sw-el-link {
+    color: #70989D;
     text-decoration: none;
 }
 
 .sw-el {
-    color: #70989D;
     border: 1px solid #B64519;
     margin: 20px auto;
     padding: 15px;
@@ -15,6 +15,7 @@
     text-align: center;
     transition: 1s all ease;
     display: block;
+    text-decoration: none;
 }
 
 .sw-el:hover {

@@ -3,7 +3,6 @@ import { getPeople, getPersonDetails, resetPeople } from "./actions";
 
 const initState = {
     people:[],
-    isLoading: false,
     page: 1,
     detailedPerson: {},
     errorInfo: '',
@@ -24,16 +23,13 @@ export const peopleReducer = createReducer(initState, builder => {
             state.reset = true
         })
         .addMatcher((action) => action.type.endsWith('/pending'), state => {
-            state.isLoading = true
             state.status = 'PENDING'
         } )
         .addMatcher((action) => action.type.endsWith('/rejected'), state => {
-            state.isLoading = true
             state.errorInfo = 'unable to fetch data'
             state.status = 'REJECTED'
         } )
         .addMatcher((action) => action.type.endsWith('/fulfilled'), state => {
-            state.isLoading = false
             state.status = 'FULFILLED'
         } )
         .addDefaultCase(((state) => {
